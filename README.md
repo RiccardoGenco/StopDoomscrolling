@@ -1,6 +1,6 @@
 # Focus Guardian Pro 🛡️
 
-**Focus Guardian Pro** è un sistema di monitoraggio intelligente progettato per combattere la distrazione digitale. Utilizzando la potenza della computer vision (YOLOv8), il sistema rileva in tempo reale quando l'utente utilizza il proprio smartphone durante una sessione di lavoro o studio e interviene con una notifica visiva a schermo intero.
+**Focus Guardian Pro** è un sistema di monitoraggio intelligente progettato per combattere la distrazione digitale. Utilizzando la potenza della computer vision (YOLOv8), il sistema rileva in tempo reale quando l'utente utilizza il proprio smartphone durante una sessione di lavoro o studio e interviene con una notifica visiva sotto forma di punizione.
 
 ## 🚀 Funzionalità
 - **Monitoraggio in tempo reale**: Utilizza la webcam per analizzare l'ambiente di lavoro.
