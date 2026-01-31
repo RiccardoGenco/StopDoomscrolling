@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Focus Guardian Pro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #video-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            z-index: 100;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Riempie tutto lo schermo */
+        }
+
+        #setup-screen {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .blink {
+            animation: blinker 1.5s linear infinite;
+            color: red;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        #log-area {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 0.8em;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="setup-screen">
+        <h1 class="blink">SISTEMA DI SORVEGLIANZA ATTIVO</h1>
+        <p>CLICCA IN UN PUNTO QUALSIASI PER INIZIALIZZARE</p>
+        <p id="status-text">Stato: In attesa di connessione...</p>
+    </div>
+
+    <div id="video-container">
+        <video id="p-video" src="/video" loop></video>
+    </div>
+
+    <div id="log-area"></div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+        const video = document.getElementById('p-video');
+        const container = document.getElementById('video-container');
+        const statusText = document.getElementById('status-text');
+
+        // Funzione Fullscreen
+        function enableFullscreen() {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+            document.getElementById('setup-screen').style.opacity = "0.3";
+            console.log("Sistema pronto e Fullscreen attivo.");
+        }
+
+        document.addEventListener('click', enableFullscreen);
+
+        socket.on('connect', () => {
+            statusText.textContent = "CONNESSO ALL'IA ✅";
+            statusText.style.color = "#0f0";
+        });
+
+        socket.on('status', (data) => {
+            if (data.active) {
+                // DISTRAZIONE RILEVATA
+                container.style.display = 'block';
+                document.getElementById('setup-screen').style.display = 'none';
+                video.play().catch(e => console.log("Errore riproduzione: clicca sulla pagina!"));
+            } else {
+                // FOCUS RIPRISTINATO
+                container.style.display = 'none';
+                document.getElementById('setup-screen').style.display = 'block';
+                video.pause();
+                video.currentTime = 0;
+            }
+        });
+    </script>
+</body>
+
+</html>
