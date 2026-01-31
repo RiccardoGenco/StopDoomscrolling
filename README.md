@@ -1,6 +1,6 @@
 # Focus Guardian Pro 🛡️
 
-**Focus Guardian Pro** è un sistema di monitoraggio intelligente progettato per combattere la distrazione digitale. Utilizzando la potenza della computer vision (YOLOv8), il sistema rileva in tempo reale quando l'utente utilizza il proprio smartphone durante una sessione di lavoro o studio e interviene con una notifica visiva a schermo intero.
+**Focus Guardian Pro** è un sistema di monitoraggio intelligente progettato per combattere la distrazione digitale. Utilizzando la potenza della computer vision (YOLOv8), il sistema rileva in tempo reale quando l'utente utilizza il proprio smartphone durante una sessione di lavoro o studio e interviene riproducendo come punizione il meme dello scheletro di skyrim finchè non smette di guardare il telefono.
 
 ##  Funzionalità
 - **Monitoraggio in tempo reale**: Utilizza la webcam per analizzare l'ambiente di lavoro.
@@ -39,7 +39,7 @@ Il progetto è basato su:
 4. **Modelli YOLO**:
    Assicurati che i file `yolov8n.pt` siano presenti nella cartella principale. Se non presenti, verranno scaricati automaticamente al primo avvio.
 
-## 🚦 Utilizzo
+##  Utilizzo
 
 1. **Configurazione Percorsi**:
    Apri `SmartObserver_Web.py` e configura i percorsi necessari:
